@@ -1,0 +1,4 @@
+epoch5	354.99K
+epoch4	356.09K
+epoch3	194.90K
+epoch2	6.00K
