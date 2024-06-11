@@ -16,6 +16,23 @@ import (
     "strings"
 )
 
+func formatWithCommas(num float64) string {
+    numStr := strconv.FormatFloat(num, 'f', 2, 64)
+    parts := strings.Split(numStr, ".")
+    intPart := parts[0]
+    var formattedStr string
+    for i, c := range intPart {
+        if i > 0 && (len(intPart)-i)%3 == 0 {
+            formattedStr += ","
+        }
+        formattedStr += string(c)
+    }
+    if len(parts) > 1 {
+        formattedStr += "." + parts[1]
+    }
+    return formattedStr
+}
+
 // readRewards reads a file and returns a map of epoch to accumulated rewards.
 func readRewards(filename string) (map[string]float64, error) {
     file, err := os.Open(filename)
@@ -62,6 +79,7 @@ func readRewards(filename string) (map[string]float64, error) {
     return rewards, nil
 }
 
+
 func main() {
     files := []string{"rewards01.txt", "rewards02.txt"}
     totalRewards := make(map[string]float64)
@@ -90,10 +108,10 @@ func main() {
     fmt.Println("Total rewards by epoch:")
     for _, epoch := range epochs {
         total := totalRewards[epoch]
-        fmt.Printf("%s: %.2f\n", epoch, total)
+        fmt.Printf("%s: %s\n", epoch, formatWithCommas(total))
         grandTotal += total
     }
     
-    fmt.Printf("Grand Total: %.2f\n", grandTotal)
+    fmt.Printf("Grand Total: %s\n", formatWithCommas(grandTotal))
 }
 
