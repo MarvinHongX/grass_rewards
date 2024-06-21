@@ -17,7 +17,7 @@ import (
 )
 
 func formatWithCommas(num float64) string {
-    numStr := strconv.FormatFloat(num, 'f', 2, 64)
+    numStr := strconv.FormatFloat(num, 'f', 0, 64)
     parts := strings.Split(numStr, ".")
     intPart := parts[0]
     var formattedStr string

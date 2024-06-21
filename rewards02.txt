@@ -1,4 +1,5 @@
-Epoch5	354.99K
+Epoch6	94.52K
+Epoch5	350.57K
 Epoch4	356.09K
 Epoch3	194.90K
 Epoch2	6.00K
